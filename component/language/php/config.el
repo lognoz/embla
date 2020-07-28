@@ -25,11 +25,14 @@
 (defun php-init-php-mode ()
   ;; Reinitialize PHPDoc face to acts like commentary block.
   (setq php-phpdoc-font-lock-doc-comments nil)
-  (face-remap-add-relative 'font-lock-doc-face 'font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face 'font-lock-comment-face)
+  (electric-pair-mode 1))
 
 (defun php-init-ac-php ()
   ;; Enable ElDoc support
   (ac-php-core-eldoc-setup)
+  (make-local-variable 'eldoc-documentation-function)
+  (setq eldoc-documentation-function 'phpactor-hover)
   ;; Jump to definition
   (define-key php-mode-map (kbd "M-]")
     'ac-php-find-symbol-at-point)
@@ -40,5 +43,8 @@
 (defun php-init-company ()
   ;; Change company backend.
   (set (make-local-variable 'company-backends)
-    '((company-ac-php-backend)
-       company-phpactor company-files)))
+       '((company-ac-php-backend)
+         company-phpactor
+         company-files))
+  (set (make-local-variable 'company-backends)
+       (mapcar #'company-yasnippet-backend company-backends)))

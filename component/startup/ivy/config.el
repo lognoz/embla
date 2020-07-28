@@ -39,14 +39,17 @@
          ;; File names ending with # or ~
          "\\|\\(?:\\`.+?[#~]\\'\\)"))
 
+  (add-hook 'ivy-mode 'ivy-hook-ivy-prescient)
+  (add-hook 'ivy-mode 'ivy-hook-prescient)
+  (add-hook 'minibuffer-setup-hook 'ivy-resize-minibuffer-setup-hook)
+
   ;; Change the maximum width of the Ivy window to 1/3
-  (setq ivy-height-alist '((t lambda (_caller) (/ (window-height) 3))))
-  (add-hook 'minibuffer-setup-hook 'ivy-resize-minibuffer-setup-hook))
+  (setq ivy-height-alist '((t lambda (_caller) (/ (window-height) 3)))))
 
 (defun ivy-init-counsel ()
   (setq counsel-yank-pop-preselect-last t))
 
-(defun ivy-init-ivy-prescient ()
+(defun ivy-hook-ivy-prescient ()
   (setq ivy-prescient-retain-classic-highlighting t)
   (setq ivy-prescient-enable-filtering nil)
   (setq ivy-prescient-enable-sorting t)
@@ -58,7 +61,7 @@
            counsel-yank-pop
            ivy-switch-buffer)))
 
-(defun ivy-init-prescient ()
+(defun ivy-hook-prescient ()
   (require 'prescient)
   (setq prescient-history-length 200)
   (setq prescient-save-file (concat embla-temporary-directory "prescient"))

@@ -59,12 +59,13 @@ value. If it's in normal mode, enter in insert."
   "Replace variables in file."
   (with-temp-file path
     (insert-file-contents-literally path)
-    (mapc (lambda (entry)
-      (setq entry (eval entry))
-      (goto-char 0)
-      (while (search-forward (car entry) nil t)
-        (replace-match (cdr entry))))
-      replacement)))
+    (mapc
+     (lambda (entry)
+       (setq entry (eval entry))
+       (goto-char 0)
+       (while (search-forward (car entry) nil t)
+         (replace-match (cdr entry))))
+     replacement)))
 
 ;;;###autoload
 (defun replace-in-string (string replacement)

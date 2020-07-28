@@ -27,7 +27,7 @@
   :define
     (kbd "M-s r") 'vr/query-replace
     (kbd "M-s M-r") 'vr/replace
-    (kbd "M-s M-o") 'occur-project)
+    (kbd "M-s M-o") 'counsel-projectile-grep)
 
 (define-keybinding
   :mode 'isearch-mode-map

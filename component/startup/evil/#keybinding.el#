@@ -41,7 +41,7 @@
   :define
     "j" 'evil-next-visual-line
     "k" 'evil-previous-visual-line
-    ;; "=" 'evil-indent-line
+    "=" 'evil-indent-line
     "<" 'evil-shift-left-line
     ">" 'evil-shift-right-line)
 
@@ -53,8 +53,9 @@
     ">" 'visual-shift-right)
 
 ;; Remove evil search and some motions.
-(define-keybinding :mode 'evil-motion-state-map
-                   :define "}" nil "{" nil "/" nil "*" nil)
+(define-keybinding
+  :mode 'evil-motion-state-map
+    :define "}" nil "{" nil "/" nil "*" nil)
 
 ;; Use shell-command function for '!' evil motions.
 (define-keybinding :mode 'evil-motion-state-map

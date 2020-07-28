@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
-# name: debug
+# name:
 # key: debug
-# group: definitions
 # --
 echo "<pre>";
 print_r(${1:$variable});

@@ -52,12 +52,6 @@
 ;; Highlight matching parenthesis
 (show-paren-mode t)
 
-;; Display line numbers
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;; Auto close insertion
-(electric-pair-mode 1)
-
 ;; Define tab width
 (setq-default tab-width 3)
 
@@ -90,6 +84,11 @@
 (face-spec-set 'highlight
   '((t :background "#20242B"
        :foreground nil)))
+
+(face-spec-set 'ivy-virtual
+  '((t :background nil
+       :foreground "#ABB2BF"
+       :italic nil)))
 
 (dolist (selector '(vr/match-0 vr/match-1))
   (face-spec-set selector

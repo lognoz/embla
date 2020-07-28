@@ -1,4 +1,6 @@
 /elpa
+/eshell
+/private
 /phpactor
-/private/temporary
+/auto-save-list
 /.python-environments

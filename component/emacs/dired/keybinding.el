@@ -31,6 +31,7 @@
     (kbd "<tab>") 'dired-subtree-toggle
     (kbd "<backtab>") 'dired-subtree-cycle
     (kbd "RET") 'dired-find-alternate-file
+    "=" 'dired-diff
     "+" 'dired-create-directory
     "c" 'dired-do-compress-to
     "d" 'dired-flag-file-deletion

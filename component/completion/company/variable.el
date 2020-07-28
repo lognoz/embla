@@ -22,5 +22,5 @@
 
 ;;; Code:
 
-(defvar company-completion-hook '(pre-command-hook find-file-hook)
+(defvar company-completion-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   "The hook that load company completion.")

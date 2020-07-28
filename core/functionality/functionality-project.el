@@ -27,12 +27,11 @@
   (interactive "sProject source: ")
   (let* ((project-root (projectile-project-root))
          (path (concat project-root ".dir-locals.el"))
-         (template-dir-locals
-           (template-content (concat embla-template-directory "dir-locals"))))
+         (template-dir-locals (template-content (concat embla-template-directory "dir-locals"))))
     (write-region
-      (replace-in-string template-dir-locals
-        '((cons "__source__" source)))
-      nil path)))
+     (replace-in-string template-dir-locals
+                        '((cons "__source__" source)))
+     nil path)))
 
 (defun directories-attributes (directory)
   "Return list of directories and its attributes like last
@@ -55,11 +54,11 @@ modification, user permissions, etc."
     (dolist (directory project-directories)
       (setq directories (append directories (directories-attributes directory))))
     (mapcar
-      (lambda (directory)
-        (cons (car directory) (cadr directory)))
-      (sort directories
-            #'(lambda (x y)
-                (time-less-p (nth 6 y) (nth 6 x)))))))
+     (lambda (directory)
+       (cons (car directory) (cadr directory)))
+     (sort directories
+           #'(lambda (x y)
+               (time-less-p (nth 6 y) (nth 6 x)))))))
 
 ;;;###autoload
 (defun browse-project-source ()
@@ -71,11 +70,11 @@ normally define into .dir-locals.el at the base of the project."
   (when (and (boundp 'project-sources)
              (equal (type-of project-sources) 'cons))
     (if (equal (length project-sources) 1)
-      (browse-url (car project-sources))
+        (browse-url (car project-sources))
       (ivy-read "Browse source: " project-sources
-        :require-match t
-        :action (lambda (target)
-          (browse-url target))))
+                :require-match t
+                :action (lambda (target)
+                          (browse-url target))))
     (message "Open url on browser")))
 
 ;;;###autoload
@@ -88,7 +87,7 @@ prompt will ask if the user want to create it."
     (unless project-root
       (error "This function can only be exectued in project."))
     (if (file-exists-p path)
-      (find-file path)
+        (find-file path)
       (when (yes-or-no-p "File .dir-locals.el couldn't been found. Do you want to create it? ")
         (call-interactively 'create-directory-local-variable-file)
         (find-file path)))))
@@ -102,8 +101,8 @@ variables. Return candidates is sorting by last modification."
     (error "No project-directories variable is defined."))
   (let ((candidates (find-project-candidates)))
     (ivy-read "Open project: " candidates
-      :require-match t
-      :action (lambda (target)
-        (dired (cdr target))))))
+              :require-match t
+              :action (lambda (target)
+                        (dired (cdr target))))))
 
 (provide 'functionality-project)

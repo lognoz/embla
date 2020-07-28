@@ -23,14 +23,6 @@
 ;;; Code:
 
 ;;;###autoload
-(defun occur-project (keyword)
-  (interactive "sGrep for: ")
-  (let ((directory (projectile-project-root)))
-    (if directory
-      (noccur-project keyword 0 directory)
-      (noccur-project keyword))))
-
-;;;###autoload
 (defadvice isearch-exit (after my-goto-match-beginning activate)
   (when (and isearch-forward isearch-other-end)
     (goto-char isearch-other-end)))

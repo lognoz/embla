@@ -23,9 +23,10 @@
 ;;; Code:
 
 (defun projectile-init-projectile ()
-  (require 'projectile)
+  (projectile-mode)
+  (projectile--define-ignored-directories))
 
-  (setq projectile-globally-ignored-directories
-    '(".git"
-      "node_modules"
-      "composer")))
+(defun projectile--define-ignored-directories ()
+  (require 'projectile)
+  (append projectile-globally-ignored-directories
+          '("node_modules" "composer")))

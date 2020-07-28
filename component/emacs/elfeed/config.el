@@ -23,7 +23,8 @@
 ;;; Code:
 
 (defun elfeed-init-elfeed ()
-  "Initialization of elfeed."
+  (defvar elfeed-search-mode-map)
+  (defvar elfeed-show-mode-map)
   (setq elfeed-use-curl t
         elfeed-curl-max-connections 10
         elfeed-search-clipboard-type 'CLIPBOARD
@@ -33,9 +34,9 @@
         elfeed-search-trailing-width 16
         elfeed-show-truncate-long-urls t
         elfeed-show-unique-buffers t)
-
   (elfeed-update))
 
 (defun elfeed-init-evil ()
-  "Initialization of inital evil state."
-  (evil-set-initial-state 'elfeed-search-mode 'normal))
+  (setq evil-disable-insert-state-bindings t)
+  (evil-set-initial-state 'elfeed-search-mode 'normal)
+  (evil-set-initial-state 'elfeed-show-mode-map 'normal))

@@ -64,6 +64,9 @@
 (defconst embla-snippet-directory (concat embla-private-directory "snippet/")
   "The directory of snippets files.")
 
+(defconst embla-external-directory (concat embla-private-directory "external/")
+  "The directory of external files.")
+
 (defconst embla-project-directory (concat embla-private-directory "project/")
   "The directory of project files.")
 
@@ -107,8 +110,8 @@ that can quickly execute action with it."
 (defun directory-name (path)
   "Return the directory name of a reference path."
   (file-name-nondirectory
-   (directory-file-name
-     (file-name-directory path))))
+    (directory-file-name
+      (file-name-directory path))))
 
 (defun directories-list (path)
   "Return a list of directories by a reference path."
@@ -116,8 +119,8 @@ that can quickly execute action with it."
     (dolist (f (directory-files path))
       (let ((path (concat path f)))
         (when (and (file-directory-p path)
-                    (not (equal f "."))
-                    (not (equal f "..")))
+                   (not (equal f "."))
+                   (not (equal f "..")))
           (push (file-name-as-directory path) list))))
     list))
 
@@ -141,8 +144,8 @@ that can quickly execute action with it."
           nil 'nomessage)))
 
 (defun require-composites ()
-  "This function is used to require all Embla composites and to check
-if requirements is ensure."
+  "Require all Embla composites and to check if requirements
+is ensure."
   (import-core "core-editor" "core-package")
   ;; If Embla not installed, use execute installer.
   (when (not (file-exists-p embla-autoload-file))
@@ -153,8 +156,7 @@ if requirements is ensure."
   (load-theme 'atom-one-dark t))
 
 (defun embla-after-init-hook ()
-  "This function is used to load packages and config files into
-component directory."
+  "Load packages and config files into component directory."
   (import-core "core-mode-line")
   ;; Enable minor mode.
   (embla-mode)
@@ -177,8 +179,8 @@ component directory."
         file-name-handler-alist last-file-name-handler-alist))
 
 (defun define-context-files ()
-  "This function is used to set bookmark, minibuffer, history, place,
-undo-tree and backup files."
+  "Set bookmark, minibuffer, history, place, undo-tree and
+backup files."
   ;; Import file function.
   (import-core "core-file")
   ;; Define bookmark file.
@@ -204,8 +206,8 @@ undo-tree and backup files."
 ;;; External core functions.
 
 (defun embla-initialize ()
-  "This function is the main initialization function. It create custom
-and autoload file to manage Emacs configuration."
+  "Main initialization function. It create custom and autoload
+file to manage Emacs configuration."
   (setq inhibit-default-init t
         inhibit-splash-screen t
         inhibit-startup-message t

@@ -23,5 +23,4 @@
 ;;; Code:
 
 (require-package 'isearch t)
-(require-package 'noccur)
 (require-package 'visual-regexp)

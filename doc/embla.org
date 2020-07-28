@@ -2,6 +2,7 @@
 - [[#embla-another-emacs-configuration][Embla, Another Emacs configuration]]
   - [[#global][Global]]
   - [[#isearch-occur-and-replacement-enhancements][Isearch, occur and replacement enhancements]]
+  - [[#dired][Dired]]
   - [[#git-integration][Git integration]]
   - [[#undo-and-redo-changes][Undo and redo changes]]
   - [[#winner-mode][Winner mode]]
@@ -47,11 +48,13 @@ These functions can be apply on region.
 *** Occur
 - ~M-s o~ (=occur=) :: Show all lines in the current buffer containing a match for regex.
 
+** Dired
+
+- ~C-_ (=dired-undo=) :: Undo in a Dired buffer.
+
 ** Git integration
 
 - ~C-c g~ (=magit=) :: Show the status of the current Git repository in a buffer.
-
-*** Magit
 
 ** Undo and redo changes
 
@@ -139,6 +142,20 @@ It can be execute on all document if you go to the beginning or on a region.
 
 - =keep-lines= :: Delete all lines except those containing matches for regex.
 - =flush-lines= :: Delete lines containing matches for regex.
+
+*** Execute shell command on selection
+
+To see the output only: M-|
+To replace the selection: C-u M-|
+
+**** Get number of lines that has the same result
+sort | uniq -c
+
+**** Replace non-numeric characters by character '-'
+tr '[:alpha:]' -
+
+**** Replace 'a' to 'c' characters by character '-'
+tr a-c -
 
 ** Help
 

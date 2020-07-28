@@ -22,5 +22,8 @@
 
 ;;; Code:
 
+(defun emacs-lisp-init-elisp ()
+  (setq lisp-indent-offset nil))
+
 (defun emacs-lisp-init-elisp-slime-nav ()
   (turn-on-elisp-slime-nav-mode))

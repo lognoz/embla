@@ -42,7 +42,6 @@
     (kbd "C-x <down>") 'sort-lines
     (kbd "C-x =") 'align-regexp
     (kbd "C-x C-b") 'ibuffer
-    (kbd "C-x C-r") 'revert-buffer
     (kbd "C-x p") 'find-project
     (kbd "C-x t") 'open-terminal
     (kbd "C-x w") 'elfeed
@@ -52,4 +51,5 @@
     (kbd "s-2") 'split-window-below
     (kbd "s-3") 'split-window-right
     (kbd "s-k") 'kill-current-buffer
-    (kbd "s-o") 'other-window)
+    (kbd "s-o") 'other-window
+    (kbd "s-r") 'revert-buffer)

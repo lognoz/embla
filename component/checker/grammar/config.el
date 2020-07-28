@@ -1,9 +1,9 @@
-;;; embla.el --- Embla Project File
+;;; package.el --- Grammar Component Config File
 
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: embla project
+;; Keywords: grammar
 
 ;; This file is not part of GNU Emacs.
 
@@ -22,26 +22,17 @@
 
 ;;; Code:
 
-(defvar embla-template-directory (concat embla-project-directory "embla/template/")
-  "The directory of template files.")
+(defun grammar-init-flycheck-vale ()
+  (require 'flycheck-vale)
+  (flycheck-vale-setup)
+  (flycheck-mode)
+  (flycheck-vale-toggle-enabled))
 
-;;;###autoload
-(defvar embla-editing-mode-map
-  (let ((keymap (make-sparse-keymap)))
-    (define-key keymap "\C-c\pl" 'embla-reload-init)
-    keymap))
+(defun grammar-init-langtool ()
+  (setq langtool-default-language "en-US"
+        langtool-autoshow-idle-delay 0)
 
-(defun embla-reload-init ()
-  "Reload init configuration."
-  (interactive)
-  (import-core "installer/installer")
-  (load-file embla-core-init)
-  (embla-install-program)
-  (embla-after-init-hook))
+  (setq langtool-java-classpath
+        "/usr/share/languagetool:/usr/share/java/languagetool/*")
 
-;;;###autoload
-(define-minor-mode embla-editing-mode
-  "A minor-mode to help to manage embla configuration."
-  nil " embla" embla-editing-mode-map)
-
-(provide 'embla)
+  (add-hook 'after-save-hook 'langtool-check nil 'make-it-local))

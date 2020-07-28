@@ -37,5 +37,4 @@
 
 (defun isearch-init-visual-regexp ()
   "Initialization of visual-regexp package."
-  ;; Disabled visual regexp help.
   (setq vr/auto-show-help nil))

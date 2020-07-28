@@ -65,6 +65,6 @@
   "Return the base name of the filename: no directory, no extension.
 filename defaults to `buffer-file-name'."
   (file-name-sans-extension
-    (file-name-nondirectory (or filename (buffer-file-name)))))
+   (file-name-nondirectory (or filename (buffer-file-name)))))
 
 (provide 'functionality-buffer)

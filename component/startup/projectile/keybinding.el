@@ -1,9 +1,9 @@
-;;; embla.el --- Embla Project File
+;;; keybinding.el --- Projectile Component Keybinding File
 
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: embla project
+;; Keywords: projectile
 
 ;; This file is not part of GNU Emacs.
 
@@ -22,26 +22,9 @@
 
 ;;; Code:
 
-(defvar embla-template-directory (concat embla-project-directory "embla/template/")
-  "The directory of template files.")
-
-;;;###autoload
-(defvar embla-editing-mode-map
-  (let ((keymap (make-sparse-keymap)))
-    (define-key keymap "\C-c\pl" 'embla-reload-init)
-    keymap))
-
-(defun embla-reload-init ()
-  "Reload init configuration."
-  (interactive)
-  (import-core "installer/installer")
-  (load-file embla-core-init)
-  (embla-install-program)
-  (embla-after-init-hook))
-
-;;;###autoload
-(define-minor-mode embla-editing-mode
-  "A minor-mode to help to manage embla configuration."
-  nil " embla" embla-editing-mode-map)
-
-(provide 'embla)
+(define-keybinding
+  :mode 'projectile-mode-map
+  :define
+    (kbd "C-c p b") 'counsel-projectile-switch-to-buffer
+    (kbd "C-c p f") 'counsel-projectile-find-file
+    (kbd "C-c p d") 'counsel-projectile-find-dir)

@@ -22,5 +22,5 @@
 
 ;;; Code:
 
-(defvar elfeed-emacs-hook '(elfeed-search-mode-hook)
+(defvar elfeed-emacs-hook '(elfeed-show-mode-hook elfeed-search-mode-hook)
   "The hook that load elfeed web module.")

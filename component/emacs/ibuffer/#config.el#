@@ -1,9 +1,9 @@
-;;; embla.el --- Embla Project File
+;;; config.el --- Ibuffer Component Config File
 
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: embla project
+;; Keywords: ibuffer
 
 ;; This file is not part of GNU Emacs.
 
@@ -22,26 +22,13 @@
 
 ;;; Code:
 
-(defvar embla-template-directory (concat embla-project-directory "embla/template/")
-  "The directory of template files.")
+(defun ibuffer-init-ibuffer ()
+  "Initialization of ibuffer mode."
+  (unless (equal ibuffer-sorting-mode 'alphabetic)
+    (ibuffer-do-sort-by-alphabetic)))
 
-;;;###autoload
-(defvar embla-editing-mode-map
-  (let ((keymap (make-sparse-keymap)))
-    (define-key keymap "\C-c\pl" 'embla-reload-init)
-    keymap))
+(defun ibuffer-init-ibuffer-projectile ()
+  (ibuffer-projectile-set-filter-groups))
 
-(defun embla-reload-init ()
-  "Reload init configuration."
-  (interactive)
-  (import-core "installer/installer")
-  (load-file embla-core-init)
-  (embla-install-program)
-  (embla-after-init-hook))
-
-;;;###autoload
-(define-minor-mode embla-editing-mode
-  "A minor-mode to help to manage embla configuration."
-  nil " embla" embla-editing-mode-map)
-
-(provide 'embla)
+(defun ibuffer-init-evil ()
+  (evil-set-initial-state 'ibuffer-mode 'normal))

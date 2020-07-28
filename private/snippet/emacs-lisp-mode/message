@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
+# name: message
 # key: message
-# group: definitions
 # --
 (message "%s" ${1:variable})

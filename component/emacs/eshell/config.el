@@ -1,9 +1,9 @@
-;;; embla.el --- Embla Project File
+;;; config.el --- Eshell Config Component File
 
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: embla project
+;; Keywords: eshell
 
 ;; This file is not part of GNU Emacs.
 
@@ -22,26 +22,5 @@
 
 ;;; Code:
 
-(defvar embla-template-directory (concat embla-project-directory "embla/template/")
-  "The directory of template files.")
-
-;;;###autoload
-(defvar embla-editing-mode-map
-  (let ((keymap (make-sparse-keymap)))
-    (define-key keymap "\C-c\pl" 'embla-reload-init)
-    keymap))
-
-(defun embla-reload-init ()
-  "Reload init configuration."
-  (interactive)
-  (import-core "installer/installer")
-  (load-file embla-core-init)
-  (embla-install-program)
-  (embla-after-init-hook))
-
-;;;###autoload
-(define-minor-mode embla-editing-mode
-  "A minor-mode to help to manage embla configuration."
-  nil " embla" embla-editing-mode-map)
-
-(provide 'embla)
+(defun eshell-init-eshell ()
+  (company-mode -1))

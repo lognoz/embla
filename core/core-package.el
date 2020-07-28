@@ -50,7 +50,6 @@
 
 (defun require-package (package &optional built-in)
   "Main Embla package installer used to pre-install package."
-  (interactive)
   (when (not built-in)
      ;; Add archive and initialize package.
      (unless embla-package-initialized

@@ -73,9 +73,9 @@
 (defmacro load-files (path files &rest body)
   "Load multiples files by reference path."
   `(dolist (f ,files)
-    (when (file-exists-p (concat ,path f ".el"))
-      (load (concat ,path f) nil 'nomessage)
-      ,@body)))
+     (when (file-exists-p (concat ,path f ".el"))
+       (load (concat ,path f) nil 'nomessage)
+       ,@body)))
 
 (defun file-content-without-header (path)
   "Return file content witout documentation header."
@@ -100,8 +100,7 @@
           (setq definition arg)
           (setq is-definition t))
         (when (and (not is-definition) definition)
-          (setq plist
-            (append plist (list arg)))))
+          (setq plist (append plist (list arg)))))
       (setq args (cdr args)))
     (when plist
       (add-to-list 'plist-grouped `(,definition ,plist) t))
@@ -172,16 +171,16 @@ optimize Embla."
 (defun make-component-files (directory component)
   "Fetch directories to create component file."
   (fetch-content directory
-    (let ((mode (concat module "-" component "-mode")))
-      (make-component-file
-        path module component mode))))
+    (when (string-equal module "dired")
+      (let ((mode (concat module "-" component "-mode")))
+        (make-component-file path module component mode)))))
 
 (defun make-component-file (path module component mode)
   "Create component file by given subdirectories arguments."
   (let* ((provider (format "(provide 'component-%s-%s)" component module))
          (file-to-write
-           (format "%scomponent-%s-%s.el"
-                   embla-build-directory component module))
+          (format "%scomponent-%s-%s.el"
+                  embla-build-directory component module))
          (file-content (list template-hook-function provider))
          (function-content))
     ;; Put these variables to nil to know what package is install
@@ -205,15 +204,15 @@ optimize Embla."
     (dolist (keybinding keybinding-component)
       (let ((mode (keybinding-extract-variable-content keybinding :mode)))
         (if (equal mode 'embla-mode-map)
-          (push (replace-in-string template-autoload-statement
-                  '((cons "__content__" (keybinding-in-module keybinding mode))))
-                file-content)
+            (push (replace-in-string template-autoload-statement
+                    '((cons "__content__" (keybinding-in-module keybinding mode))))
+                  file-content)
           (push (keybinding-in-module keybinding mode) function-content))))
     ;; Loop into packages installed to add hooks and create init
     ;; function caller.
     (dolist (dependency embla-component-packages)
       (when-function-exists (concat module "-init-" dependency)
-        (push (format "(%s)" func) function-content)))
+                            (push (format "(%s)" func) function-content)))
     ;; Append and replace variable in file.
     (append-to-file file-to-write file-content)
     (replace-in-file file-to-write
@@ -233,12 +232,11 @@ optimize Embla."
   (when keybindings
     (let ((content))
       (while keybindings
-        (push
-          (replace-in-string template-define-key
-            '((cons "__key__" (prin1-to-string (car keybindings)))
-              (cons "__function__" (prin1-to-string (cadr keybindings)))
-              (cons "__mode__" (prin1-to-string mode))))
-            content)
+        (push (replace-in-string template-define-key
+                '((cons "__key__" (prin1-to-string (car keybindings)))
+                  (cons "__function__" (prin1-to-string (cadr keybindings)))
+                  (cons "__mode__" (prin1-to-string mode))))
+              content)
         (setq keybindings (cddr keybindings)))
       content)))
 
@@ -258,7 +256,7 @@ optimize Embla."
       (append (keybinding-build-global-content keybinding mode)))
     (dolist (state '(:normal :visual))
       (push (keybinding-build-evil-content keybinding state mode)
-        content))
+            content))
     (mapconcat #'identity content "\n")))
 
 (defun variable-word-syntax-in-module (module component)
@@ -294,7 +292,7 @@ optimize Embla."
         (push (format template-hook-statement (symbol-name mode))
               content)))
     (if content
-      (mapconcat #'identity content "\n")
+        (mapconcat #'identity content "\n")
       (replace-in-string template-autoload-statement
         '((cons "__content__" (format "(component-%s)" variable)))))))
 
@@ -303,21 +301,25 @@ optimize Embla."
 (defun embla-install-program ()
   "This function is the main installer function. It create autoload
 file, refresh package repositories and build Embla."
-  ;; Recreate build directory.
-  (delete-directory embla-build-directory t)
-  (make-directory embla-build-directory)
-  ;; Refresh package repositories.
-  (refresh-package-repositories)
-  ;; Install embla theme.
-  (require-package 'atom-one-dark-theme)
-  ;; Create component file with `auto-install-alist'.
-  (create-auto-install-file)
-  ;; Create component files.
   (dolist (directory (directories-list embla-component-directory))
     (let ((component (directory-name directory)))
-      (make-component-files directory component)))
-  ;; Scan core, component and project directories to create the
-  ;; autoload file.
-  (create-autoload-file))
+      (make-component-files directory component))))
+
+  ;; ;; Recreate build directory.
+  ;; (delete-directory embla-build-directory t)
+  ;; (make-directory embla-build-directory)
+  ;; ;; Refresh package repositories.
+  ;; (refresh-package-repositories)
+  ;; ;; Install embla theme.
+  ;; (require-package 'atom-one-dark-theme)
+  ;; ;; Create component file with `auto-install-alist'.
+  ;; (create-auto-install-file)
+  ;; ;; Create component files.
+  ;; (dolist (directory (directories-list embla-component-directory))
+  ;;   (let ((component (directory-name directory)))
+  ;;     (make-component-files directory component))))
+  ;; ;; Scan core, component and project directories to create the
+  ;; ;; autoload file.
+  ;; (create-autoload-file))
 
 (provide 'installer)

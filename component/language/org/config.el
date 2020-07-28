@@ -38,9 +38,9 @@
   (org-babel-do-load-languages 'org-babel-load-languages
     '((shell . t)
       (http . t)
+      (R . t)
       (emacs-lisp . t)
       (python . t))))
-
 
 (defun org-init-org-bullets ()
   (org-bullets-mode))

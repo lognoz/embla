@@ -25,7 +25,7 @@
 (defun company-init-company ()
   (require 'company)
   (setq company-minimum-prefix-length 1
-        company-idle-delay 0
+        company-idle-delay 0.25
         company-selection-wrap-around t
         company-tooltip-align-annotations t
         company-tooltip-limit 14
@@ -37,5 +37,9 @@
         company-backends (mapcar #'company-yasnippet-backend company-backends)
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
+
+  (add-hook 'company-completion-started-hook 'company-turn-off-fci)
+  (add-hook 'company-completion-finished-hook 'company-maybe-turn-on-fci)
+  (add-hook 'company-completion-cancelled-hook 'company-maybe-turn-on-fci)
 
   (global-company-mode 1))

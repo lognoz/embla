@@ -27,11 +27,12 @@
     (concat (shell-command-to-string "xkblayout-state print %n") " ")))
 
 (defun mode-line--version-control ()
+  ""
   (when (stringp vc-mode)
     (format "%s%s"
             (char-to-string #xe0a0)
             (replace-regexp-in-string
-             (format "^ %s[:-]" (vc-backend buffer-file-name)) " " vc-mode))))
+              (format "^ %s[:-]" (vc-backend buffer-file-name)) " " vc-mode))))
 
 (defun mode-line--buffer-name ()
   "Render a different buffer name if version control is active or not."
@@ -39,7 +40,8 @@
     (if buffer-file-name
       (let ((project-root (projectile-project-root)))
         (when project-root
-          ;; Define text variable with buffer path with the version control location.
+          ;; Define text variable with buffer path with the version
+          ;; control location.
           (setq text (substring buffer-file-name (length project-root)))))
       ;; If it's an Emacs system buffer change font style to italic.
       (setq face 'italic))

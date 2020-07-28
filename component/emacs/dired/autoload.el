@@ -23,9 +23,6 @@
 ;;; Code:
 
 ;;;###autoload
-(setq dired-listing-switches "-aFlv --group-directories-first")
-
-;;;###autoload
 (defun dired-toogle-dotfile ()
   "Toggle visibility of dotfiles lines."
   (interactive)
