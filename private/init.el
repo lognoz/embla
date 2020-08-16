@@ -24,10 +24,27 @@
 
 (setq elfeed-feeds
   '(("https://www.youtube.com/feeds/videos.xml?channel_id=UC0uTPqBCFIpZxlz_Lv1tk_g" emacs)
-    ("https://www.legrandsoir.info/spip.php?page=backend" actuality)
-    ("https://www.investigaction.net/fr/feed/rss/" actuality)
+    ("https://www.reddit.com/r/emacs.xml" emacs)
+    ("http://xenodium.com/rss.xml" emacs)
+    ("https://www.legrandsoir.info/spip.php?page=backend" independent)
+    ("https://www.investigaction.net/fr/feed/rss/" independant)
     ("https://www.lemonde.fr/international/rss_full.xml" actuality)))
 
 (setq project-directories
   '("~/project/web/"
     "~/project/program/"))
+
+(defconst architect-directory (concat embla-external-directory "architect/")
+  "The directory of Architect files.")
+
+(defconst architect-source "https://github.com/lognoz/architect"
+  "The git source of Architect Program.")
+
+(unless (file-exists-p architect-directory)
+  (let ((default-directory embla-external-directory))
+    (shell-command (format "git clone %s" architect-source))))
+
+(load (concat architect-directory "architect") nil 'nomessage)
+
+(setq architect-directory "~/.emacs.d/private/external/architect-template")
+(setq architect-directory "~/.emacs.d/private/external/architect/example")

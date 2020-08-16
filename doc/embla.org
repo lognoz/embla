@@ -4,6 +4,7 @@
   - [[#isearch-occur-and-replacement-enhancements][Isearch, occur and replacement enhancements]]
   - [[#git-integration][Git integration]]
   - [[#undo-and-redo-changes][Undo and redo changes]]
+  - [[#minibuffer][Minibuffer]]
   - [[#winner-mode][Winner mode]]
   - [[#sort-lines][Sort lines]]
   - [[#narrowing][Narrowing]]
@@ -60,13 +61,20 @@ Remove the evil way to redo (~C-r~) to keep vanilla backward search.
 - ~C-/~ or ~u~ (=undo-tree-undo=) :: Undo change.
 - ~C-?~ (=undo-tree-redo=) :: Redo change.
 
+** Minibuffer
+
+- ~<m-shift-p>~ (previous-history-element) :: Move to the previous item in the history.
+- ~<m-shift-n>~ (next-history-element) :: Move to the next item in the minibuffer history.
+- ~<m-r>~ (previous-matching-history-element) :: Move to an earlier item in the minibuffer history that matches regexp.
+- ~<m-s>~ (next-matching-history-element) :: Move to a later item in the minibuffer history that matches regexp
+
 ** Winner mode
 
 When activated, it allows you to “undo” (and “redo”) changes in the
 window configuration with the key commands.
 
 - ~<s-left>~ (=winner-undo=) :: Switch back to an earlier window configuration.
-- ~<s-right>~ (=winner-redo=) :: Restore a more recent window configuration,
+- ~<s-right>~ (=winner-redo=) :: Restore a more recent window configuration.
 
 ** Sort lines
 

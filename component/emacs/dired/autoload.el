@@ -1,9 +1,6 @@
 ;;; emacs/dired/autoload.el --- Dired Component Autoload File
 
 ;;;###autoload
-(setq dired-listing-switches "-aFlv --group-directories-first")
-
-;;;###autoload
 (defun +dired-toogle-dotfile ()
   "Toggle visibility of dotfiles lines."
   (interactive)
@@ -34,18 +31,3 @@
   (interactive "sFind-grep (grep regexp): ")
   (grep-find
    (concat "find . -exec grep -i -nH --null " pattern " \\{\\} \\;")))
-
-;; ;;;###autoload
-;; (defun dired-do-slugify (&optional arg)
-;;   (interactive "P")
-;;   (dolist (path (dired-get-marked-files))
-;;     (let ((result)
-;;           (directory (file-name-directory path))
-;;           (extension (file-name-extension path))
-;;           (filename (file-name-sans-extension
-;;                      (file-name-nondirectory path))))
-;;       (setq filename (string-trim (shell-command-to-string
-;;                                     (format "slugify \"%s\"" filename))))
-;;       (setq result (concat (expand-file-name filename directory) "." extension))
-;;       (dired-rename-file path result nil)
-;;       (dired-revert))))

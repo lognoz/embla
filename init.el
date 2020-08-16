@@ -3,8 +3,6 @@
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: init
-
 ;; This file is not part of GNU Emacs.
 
 ;; This Emacs config is free software: you can redistribute it and/or modify it
@@ -41,8 +39,8 @@
 (setq enable-dir-local-variables nil)
 
 (if (version< emacs-version "26")
-  (error "Embla requires GNU Emacs 26 or newer, but you're running %s"
-         emacs-version)
+    (error "Embla requires GNU Emacs 26 or newer, but you're running %s"
+           emacs-version)
   (setq user-emacs-directory (file-name-directory load-file-name))
   (load (concat user-emacs-directory "core/core-embla")
         nil 'nomessage)
