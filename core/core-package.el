@@ -34,7 +34,7 @@
 
 (defun package-set-archives ()
   "Set package archives and initialize it."
-  (setq package-archives '(("melpa" . "http://melpa.org/packages/")
+  (setq package-archives '(("melpa" . "https://stable.melpa.org/packages/")
                            ("org"   . "http://orgmode.org/elpa/")
                            ("gnu"   . "http://elpa.gnu.org/packages/")))
   (package-initialize))
@@ -51,7 +51,7 @@
 (defun require-package (package &optional built-in)
   "Main Embla package installer used to pre-install package."
   (interactive)
-  (when (not built-in)
+  (unless built-in
      ;; Add archive and initialize package.
      (unless embla-package-initialized
        (package-set-archives)

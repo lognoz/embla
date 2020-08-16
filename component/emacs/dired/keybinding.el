@@ -31,6 +31,7 @@
     (kbd "<tab>") 'dired-subtree-toggle
     (kbd "<backtab>") 'dired-subtree-cycle
     (kbd "RET") 'dired-find-alternate-file
+    "=" 'dired-diff
     "+" 'dired-create-directory
     "c" 'dired-do-compress-to
     "d" 'dired-flag-file-deletion
@@ -52,6 +53,7 @@
     "K" 'dired-do-kill-lines
     "L" 'dired-do-redisplay
     "R" 'dired-do-rename
+    "S" 'dired-do-slugify
     "T" 'dired-do-touch
     "U" 'dired-unmark-all-marks
     "Z" 'dired-do-compress
@@ -66,8 +68,9 @@
     "%m" 'dired-mark-files-regexp
     "%r" 'dired-do-rename-regexp
     "%u" 'dired-upcase
+    "/g" 'dired-grep-find
     "/f" 'dired-grep-file-name
-    "/g" 'dired-grep-file-name-by-pattern
+    "/p" 'dired-grep-file-name-by-pattern
   :visual
     "m" 'dired-mark
     "d" 'dired-flag-file-deletion)

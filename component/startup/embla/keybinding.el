@@ -48,8 +48,10 @@
     (kbd "C-x w") 'elfeed
     (kbd "C-z") 'undo-tree-undo
     (kbd "M-f") 'find-file-on-cursor
+    (kbd "s-f") 'find-file
     (kbd "s-1") 'delete-other-windows
     (kbd "s-2") 'split-window-below
     (kbd "s-3") 'split-window-right
     (kbd "s-k") 'kill-current-buffer
-    (kbd "s-o") 'other-window)
+    (kbd "s-o") 'other-window
+    (kbd "s-s") 'avy-goto-char-2)

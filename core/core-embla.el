@@ -76,6 +76,9 @@
 (defconst embla-private-init-file (concat embla-private-directory "init.el")
   "The private initialization file.")
 
+(defconst embla-external-directory (concat embla-private-directory "external/")
+  "The directory of external files.")
+
 (defconst embla-autoload-file (concat embla-build-directory "embla-autoload.el")
   "The Embla autoload file.")
 

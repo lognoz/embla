@@ -37,3 +37,6 @@
 (defun evil-init-evil-magit ()
   (with-eval-after-load 'magit
     (require 'evil-magit)))
+
+(defun evil-init-evil-mc ()
+  (global-evil-mc-mode 1))

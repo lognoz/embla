@@ -1,9 +1,9 @@
-;;; package.el - Embla Component Package File
+;;; package.el --- Common Lisp Component Package File
 
 ;; Copyright (c) Marc-Antoine Loignon
 
 ;; Author: Marc-Antoine Loignon <developer@lognoz.org>
-;; Keywords: embla
+;; Keywords: common lisp
 
 ;; This file is not part of GNU Emacs.
 
@@ -22,16 +22,4 @@
 
 ;;; Code:
 
-(require-package 'avy)
-(require-package 'evil)
-(require-package 'editorconfig)
-(require-package 'projectile)
-(require-package 'orglink)
-(require-package 'pdf-tools)
-(require-package 'projectile)
-(require-package 'wgrep)
-(require-package 'which-key)
-(require-package 'expand-region)
-(require-package 'smartparens)
-(require-package 'evil-smartparens)
-(require-package 'atom-one-dark-theme)
+(require-package 'slime)

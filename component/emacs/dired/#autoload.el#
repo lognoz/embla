@@ -23,13 +23,13 @@
   (find-name-dired default-directory pattern))
 
 ;;;###autoload
-(defun +dired-grep-file-name-by-pattern (pattern)
+(defun _dired-grep-file-name-by-pattern (pattern)
   "Search files in directory by pattern."
   (interactive "sFind-grep (grep regexp): ")
   (find-grep-dired default-directory pattern))
 
 ;;;###autoload
-(defun +dired-grep-find (pattern)
+(defun dired-grep-find (pattern)
   "Search files in directory by pattern."
   (interactive "sFind-grep (grep regexp): ")
   (grep-find
